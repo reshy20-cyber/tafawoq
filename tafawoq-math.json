@@ -1,0 +1,818 @@
+[
+  {
+    "id": "math-001",
+    "subject": "الرياضيات",
+    "unit": "التباديل والتوافيق ونظرية ذات الحدين",
+    "unitNumber": 1,
+    "topic": "التباديل",
+    "difficulty": "easy",
+    "question": "قيمة ${}^{5}P_{2}$ تساوي:",
+    "options": [
+      "10",
+      "20",
+      "25",
+      "60"
+    ],
+    "answerIndex": 1,
+    "explanation": "${}^{5}P_{2} = 5 \\times 4 = 20$."
+  },
+  {
+    "id": "math-002",
+    "subject": "الرياضيات",
+    "unit": "التباديل والتوافيق ونظرية ذات الحدين",
+    "unitNumber": 1,
+    "topic": "التوافيق",
+    "difficulty": "easy",
+    "question": "قيمة ${}^{7}C_{2}$ تساوي:",
+    "options": [
+      "21",
+      "42",
+      "14",
+      "35"
+    ],
+    "answerIndex": 0,
+    "explanation": "${}^{7}C_{2} = \\frac{7 \\times 6}{2 \\times 1} = 21$."
+  },
+  {
+    "id": "math-003",
+    "subject": "الرياضيات",
+    "unit": "التباديل والتوافيق ونظرية ذات الحدين",
+    "unitNumber": 1,
+    "topic": "التوافيق",
+    "difficulty": "medium",
+    "question": "إذا كان ${}^{n}C_{2} = 15$ فإن $n$ تساوي:",
+    "options": [
+      "5",
+      "7",
+      "6",
+      "30"
+    ],
+    "answerIndex": 2,
+    "explanation": "$\\frac{n(n-1)}{2} = 15$ ومنها $n(n-1) = 30$ فيكون $n = 6$."
+  },
+  {
+    "id": "math-004",
+    "subject": "الرياضيات",
+    "unit": "التباديل والتوافيق ونظرية ذات الحدين",
+    "unitNumber": 1,
+    "topic": "نظرية ذات الحدين",
+    "difficulty": "medium",
+    "question": "عدد حدود مفكوك $(x+2)^{9}$ يساوي:",
+    "options": [
+      "9",
+      "8",
+      "18",
+      "10"
+    ],
+    "answerIndex": 3,
+    "explanation": "عدد حدود مفكوك $(a+b)^{n}$ يساوي $n + 1$."
+  },
+  {
+    "id": "math-005",
+    "subject": "الرياضيات",
+    "unit": "التباديل والتوافيق ونظرية ذات الحدين",
+    "unitNumber": 1,
+    "topic": "نظرية ذات الحدين",
+    "difficulty": "medium",
+    "question": "معامل $x^{2}$ في مفكوك $(1+x)^{5}$ يساوي:",
+    "options": [
+      "10",
+      "5",
+      "20",
+      "2"
+    ],
+    "answerIndex": 0,
+    "explanation": "المعامل هو ${}^{5}C_{2} = 10$."
+  },
+  {
+    "id": "math-006",
+    "subject": "الرياضيات",
+    "unit": "التباديل والتوافيق ونظرية ذات الحدين",
+    "unitNumber": 1,
+    "topic": "نظرية ذات الحدين",
+    "difficulty": "hard",
+    "question": "الحد الخالي من $x$ في مفكوك $\\left(x + \\frac{1}{x}\\right)^{6}$ يساوي:",
+    "options": [
+      "15",
+      "20",
+      "6",
+      "1"
+    ],
+    "answerIndex": 1,
+    "explanation": "الحد العام ${}^{6}C_{r}\\, x^{6-2r}$، ويكون خاليًا من $x$ عند $r = 3$ فيساوي ${}^{6}C_{3} = 20$."
+  },
+  {
+    "id": "math-007",
+    "subject": "الرياضيات",
+    "unit": "الأعداد المركبة",
+    "unitNumber": 2,
+    "topic": "قوى العدد i",
+    "difficulty": "easy",
+    "question": "قيمة $i^{10}$ تساوي:",
+    "options": [
+      "$1$",
+      "$i$",
+      "$-1$",
+      "$-i$"
+    ],
+    "answerIndex": 2,
+    "explanation": "$i^{10} = (i^{4})^{2} \\times i^{2} = 1 \\times (-1) = -1$."
+  },
+  {
+    "id": "math-008",
+    "subject": "الرياضيات",
+    "unit": "الأعداد المركبة",
+    "unitNumber": 2,
+    "topic": "مقياس العدد المركب",
+    "difficulty": "easy",
+    "question": "مقياس العدد المركب $3 + 4i$ يساوي:",
+    "options": [
+      "5",
+      "7",
+      "25",
+      "1"
+    ],
+    "answerIndex": 0,
+    "explanation": "$|z| = \\sqrt{3^{2} + 4^{2}} = 5$."
+  },
+  {
+    "id": "math-009",
+    "subject": "الرياضيات",
+    "unit": "الأعداد المركبة",
+    "unitNumber": 2,
+    "topic": "العمليات على الأعداد المركبة",
+    "difficulty": "medium",
+    "question": "$(1+i)^{2}$ يساوي:",
+    "options": [
+      "$2$",
+      "$2i$",
+      "$0$",
+      "$2 + 2i$"
+    ],
+    "answerIndex": 1,
+    "explanation": "$(1+i)^{2} = 1 + 2i + i^{2} = 2i$."
+  },
+  {
+    "id": "math-010",
+    "subject": "الرياضيات",
+    "unit": "الأعداد المركبة",
+    "unitNumber": 2,
+    "topic": "الصورة المثلثية",
+    "difficulty": "medium",
+    "question": "الصورة المثلثية للعدد المركب $1 + i$ هي:",
+    "options": [
+      "$\\cos\\frac{\\pi}{4} + i\\sin\\frac{\\pi}{4}$",
+      "$2\\left(\\cos\\frac{\\pi}{4} + i\\sin\\frac{\\pi}{4}\\right)$",
+      "$\\sqrt{2}\\left(\\cos\\frac{\\pi}{4} + i\\sin\\frac{\\pi}{4}\\right)$",
+      "$\\sqrt{2}\\left(\\cos\\frac{\\pi}{2} + i\\sin\\frac{\\pi}{2}\\right)$"
+    ],
+    "answerIndex": 2,
+    "explanation": "المقياس $\\sqrt{1^{2}+1^{2}} = \\sqrt{2}$ والسعة $\\tan^{-1}(1) = \\frac{\\pi}{4}$."
+  },
+  {
+    "id": "math-011",
+    "subject": "الرياضيات",
+    "unit": "الأعداد المركبة",
+    "unitNumber": 2,
+    "topic": "الجذور التكعيبية للواحد الصحيح",
+    "difficulty": "medium",
+    "question": "إذا كان $\\omega$ أحد الجذرين التكعيبيين المركبين للواحد الصحيح فإن $(1+\\omega^{2})^{4}$ يساوي:",
+    "options": [
+      "$\\omega^{2}$",
+      "$1$",
+      "$-1$",
+      "$\\omega$"
+    ],
+    "answerIndex": 3,
+    "explanation": "$1 + \\omega^{2} = -\\omega$، إذن $(-\\omega)^{4} = \\omega^{4} = \\omega^{3} \\times \\omega = \\omega$."
+  },
+  {
+    "id": "math-012",
+    "subject": "الرياضيات",
+    "unit": "الأعداد المركبة",
+    "unitNumber": 2,
+    "topic": "نظرية ديموافر",
+    "difficulty": "hard",
+    "question": "$\\left(\\cos\\frac{\\pi}{6} + i\\sin\\frac{\\pi}{6}\\right)^{6}$ يساوي:",
+    "options": [
+      "$-1$",
+      "$1$",
+      "$i$",
+      "$-i$"
+    ],
+    "answerIndex": 0,
+    "explanation": "بنظرية ديموافر: $\\cos\\pi + i\\sin\\pi = -1$."
+  },
+  {
+    "id": "math-013",
+    "subject": "الرياضيات",
+    "unit": "المحددات والمصفوفات",
+    "unitNumber": 3,
+    "topic": "المحددات",
+    "difficulty": "easy",
+    "question": "قيمة المحدد $\\begin{vmatrix} 2 & 3 \\\\ 1 & 4 \\end{vmatrix}$ تساوي:",
+    "options": [
+      "11",
+      "5",
+      "−5",
+      "8"
+    ],
+    "answerIndex": 1,
+    "explanation": "$2 \\times 4 - 3 \\times 1 = 5$."
+  },
+  {
+    "id": "math-014",
+    "subject": "الرياضيات",
+    "unit": "المحددات والمصفوفات",
+    "unitNumber": 3,
+    "topic": "المعكوس الضربي للمصفوفة",
+    "difficulty": "medium",
+    "question": "المصفوفة $\\begin{pmatrix} 2 & 4 \\\\ 1 & k \\end{pmatrix}$ ليس لها معكوس ضربي عندما $k$ تساوي:",
+    "options": [
+      "0",
+      "−2",
+      "2",
+      "8"
+    ],
+    "answerIndex": 2,
+    "explanation": "لا يوجد معكوس عندما المحدد يساوي صفرًا: $2k - 4 = 0$ ومنها $k = 2$."
+  },
+  {
+    "id": "math-015",
+    "subject": "الرياضيات",
+    "unit": "المحددات والمصفوفات",
+    "unitNumber": 3,
+    "topic": "المعكوس الضربي للمصفوفة",
+    "difficulty": "medium",
+    "question": "المعكوس الضربي للمصفوفة $\\begin{pmatrix} 2 & 1 \\\\ 5 & 3 \\end{pmatrix}$ هو:",
+    "options": [
+      "$\\begin{pmatrix} 3 & -1 \\\\ -5 & 2 \\end{pmatrix}$",
+      "$\\begin{pmatrix} 3 & 1 \\\\ 5 & 2 \\end{pmatrix}$",
+      "$\\begin{pmatrix} -2 & 1 \\\\ 5 & -3 \\end{pmatrix}$",
+      "$\\begin{pmatrix} 2 & -1 \\\\ -5 & 3 \\end{pmatrix}$"
+    ],
+    "answerIndex": 0,
+    "explanation": "المحدد $= 6 - 5 = 1$، والمعكوس $= \\frac{1}{1}\\begin{pmatrix} 3 & -1 \\\\ -5 & 2 \\end{pmatrix}$ بتبديل عنصري القطر الرئيسي وتغيير إشارة العنصرين الآخرين."
+  },
+  {
+    "id": "math-016",
+    "subject": "الرياضيات",
+    "unit": "المحددات والمصفوفات",
+    "unitNumber": 3,
+    "topic": "محددات الدرجة الثالثة",
+    "difficulty": "medium",
+    "question": "قيمة المحدد $\\begin{vmatrix} 1 & 2 & 3 \\\\ 0 & 4 & 5 \\\\ 0 & 0 & 6 \\end{vmatrix}$ تساوي:",
+    "options": [
+      "11",
+      "0",
+      "15",
+      "24"
+    ],
+    "answerIndex": 3,
+    "explanation": "المحدد على الصورة المثلثية فقيمته حاصل ضرب عناصر القطر الرئيسي: $1 \\times 4 \\times 6 = 24$."
+  },
+  {
+    "id": "math-017",
+    "subject": "الرياضيات",
+    "unit": "المحددات والمصفوفات",
+    "unitNumber": 3,
+    "topic": "خواص المحددات",
+    "difficulty": "medium",
+    "question": "محدد قيمته 7، إذا بُدّل موضعا صفين فيه فإن قيمته تصبح:",
+    "options": [
+      "7",
+      "−7",
+      "0",
+      "14"
+    ],
+    "answerIndex": 1,
+    "explanation": "تبديل صفين (أو عمودين) يغيّر إشارة المحدد فقط."
+  },
+  {
+    "id": "math-018",
+    "subject": "الرياضيات",
+    "unit": "المحددات والمصفوفات",
+    "unitNumber": 3,
+    "topic": "حل المعادلات بطريقة كرامر",
+    "difficulty": "hard",
+    "question": "عند حل النظام $2x + y = 5$ ، $x - y = 1$ بطريقة كرامر تكون قيمة $x$:",
+    "options": [
+      "1",
+      "3",
+      "2",
+      "−2"
+    ],
+    "answerIndex": 2,
+    "explanation": "$\\Delta = \\begin{vmatrix} 2 & 1 \\\\ 1 & -1 \\end{vmatrix} = -3$ و $\\Delta_{x} = \\begin{vmatrix} 5 & 1 \\\\ 1 & -1 \\end{vmatrix} = -6$ فيكون $x = \\frac{-6}{-3} = 2$."
+  },
+  {
+    "id": "math-019",
+    "subject": "الرياضيات",
+    "unit": "الهندسة الفراغية والمتجهات",
+    "unitNumber": 4,
+    "topic": "البعد بين نقطتين في الفراغ",
+    "difficulty": "easy",
+    "question": "البعد بين النقطتين $(1, 2, 3)$ و $(4, 6, 3)$ يساوي:",
+    "options": [
+      "5",
+      "7",
+      "25",
+      "$\\sqrt{7}$"
+    ],
+    "answerIndex": 0,
+    "explanation": "$\\sqrt{3^{2} + 4^{2} + 0^{2}} = 5$."
+  },
+  {
+    "id": "math-020",
+    "subject": "الرياضيات",
+    "unit": "الهندسة الفراغية والمتجهات",
+    "unitNumber": 4,
+    "topic": "معيار المتجه",
+    "difficulty": "easy",
+    "question": "معيار المتجه $\\vec{A} = (2, -1, 2)$ يساوي:",
+    "options": [
+      "9",
+      "3",
+      "$\\sqrt{5}$",
+      "5"
+    ],
+    "answerIndex": 1,
+    "explanation": "$\\|\\vec{A}\\| = \\sqrt{4 + 1 + 4} = 3$."
+  },
+  {
+    "id": "math-021",
+    "subject": "الرياضيات",
+    "unit": "الهندسة الفراغية والمتجهات",
+    "unitNumber": 4,
+    "topic": "الضرب القياسي",
+    "difficulty": "medium",
+    "question": "المتجهان $\\vec{A} = (1, 2, 3)$ و $\\vec{B} = (3, 0, k)$ متعامدان عندما $k$ تساوي:",
+    "options": [
+      "1",
+      "0",
+      "−1",
+      "−3"
+    ],
+    "answerIndex": 2,
+    "explanation": "شرط التعامد $\\vec{A} \\cdot \\vec{B} = 0$ أي $3 + 0 + 3k = 0$ ومنها $k = -1$."
+  },
+  {
+    "id": "math-022",
+    "subject": "الرياضيات",
+    "unit": "الهندسة الفراغية والمتجهات",
+    "unitNumber": 4,
+    "topic": "الضرب الاتجاهي",
+    "difficulty": "medium",
+    "question": "حاصل الضرب الاتجاهي $\\hat{j} \\times \\hat{i}$ يساوي:",
+    "options": [
+      "$\\hat{k}$",
+      "$\\vec{0}$",
+      "$1$",
+      "$-\\hat{k}$"
+    ],
+    "answerIndex": 3,
+    "explanation": "$\\hat{i} \\times \\hat{j} = \\hat{k}$ والضرب الاتجاهي غير إبدالي، فيكون $\\hat{j} \\times \\hat{i} = -\\hat{k}$."
+  },
+  {
+    "id": "math-023",
+    "subject": "الرياضيات",
+    "unit": "الهندسة الفراغية والمتجهات",
+    "unitNumber": 4,
+    "topic": "معادلة المستوى",
+    "difficulty": "medium",
+    "question": "معادلة المستوى المار بالنقطة $(1, 2, 3)$ والعمودي على المتجه $(2, -1, 2)$ هي:",
+    "options": [
+      "$2x - y + 2z = 6$",
+      "$2x - y + 2z = 0$",
+      "$x + 2y + 3z = 6$",
+      "$2x - y + 2z = 9$"
+    ],
+    "answerIndex": 0,
+    "explanation": "$2(x-1) - (y-2) + 2(z-3) = 0$ ومنها $2x - y + 2z = 6$."
+  },
+  {
+    "id": "math-024",
+    "subject": "الرياضيات",
+    "unit": "الهندسة الفراغية والمتجهات",
+    "unitNumber": 4,
+    "topic": "بعد نقطة عن مستوى",
+    "difficulty": "hard",
+    "question": "بُعد النقطة $(1, 2, 3)$ عن المستوى $2x - y + 2z + 3 = 0$ يساوي:",
+    "options": [
+      "9",
+      "3",
+      "1",
+      "6"
+    ],
+    "answerIndex": 1,
+    "explanation": "$\\frac{|2(1) - 2 + 2(3) + 3|}{\\sqrt{4 + 1 + 4}} = \\frac{9}{3} = 3$."
+  },
+  {
+    "id": "math-025",
+    "subject": "الرياضيات",
+    "unit": "التفاضل وتطبيقاته",
+    "unitNumber": 5,
+    "topic": "اشتقاق الدوال المثلثية",
+    "difficulty": "easy",
+    "question": "إذا كان $y = \\sin 3x$ فإن $\\frac{dy}{dx}$ تساوي:",
+    "options": [
+      "$\\cos 3x$",
+      "$-3\\cos 3x$",
+      "$3\\cos 3x$",
+      "$3\\sin 3x$"
+    ],
+    "answerIndex": 2,
+    "explanation": "مشتقة $\\sin u$ هي $\\cos u \\times \\frac{du}{dx}$ فتكون $3\\cos 3x$."
+  },
+  {
+    "id": "math-026",
+    "subject": "الرياضيات",
+    "unit": "التفاضل وتطبيقاته",
+    "unitNumber": 5,
+    "topic": "اشتقاق الدوال الأسية",
+    "difficulty": "easy",
+    "question": "إذا كان $y = e^{2x}$ فإن $\\frac{dy}{dx}$ تساوي:",
+    "options": [
+      "$2e^{2x}$",
+      "$e^{2x}$",
+      "$2x\\,e^{2x}$",
+      "$2x\\,e^{2x-1}$"
+    ],
+    "answerIndex": 0,
+    "explanation": "مشتقة $e^{u}$ هي $e^{u} \\times \\frac{du}{dx}$ فتكون $2e^{2x}$."
+  },
+  {
+    "id": "math-027",
+    "subject": "الرياضيات",
+    "unit": "التفاضل وتطبيقاته",
+    "unitNumber": 5,
+    "topic": "اشتقاق الدوال اللوغاريتمية",
+    "difficulty": "medium",
+    "question": "إذا كان $y = \\ln(x^{2}+1)$ فإن $\\frac{dy}{dx}$ تساوي:",
+    "options": [
+      "$\\frac{1}{x^{2}+1}$",
+      "$\\frac{2x}{x^{2}+1}$",
+      "$2x\\ln(x^{2}+1)$",
+      "$\\frac{x}{x^{2}+1}$"
+    ],
+    "answerIndex": 1,
+    "explanation": "مشتقة $\\ln u$ هي $\\frac{1}{u} \\times \\frac{du}{dx} = \\frac{2x}{x^{2}+1}$."
+  },
+  {
+    "id": "math-028",
+    "subject": "الرياضيات",
+    "unit": "التفاضل وتطبيقاته",
+    "unitNumber": 5,
+    "topic": "الاشتقاق الضمني",
+    "difficulty": "medium",
+    "question": "إذا كان $x^{2} + y^{2} = 25$ فإن $\\frac{dy}{dx}$ عند النقطة $(3, 4)$ تساوي:",
+    "options": [
+      "$\\frac{3}{4}$",
+      "$-\\frac{4}{3}$",
+      "$\\frac{4}{3}$",
+      "$-\\frac{3}{4}$"
+    ],
+    "answerIndex": 3,
+    "explanation": "بالاشتقاق ضمنيًا: $2x + 2y\\frac{dy}{dx} = 0$ ومنها $\\frac{dy}{dx} = -\\frac{x}{y} = -\\frac{3}{4}$."
+  },
+  {
+    "id": "math-029",
+    "subject": "الرياضيات",
+    "unit": "التفاضل وتطبيقاته",
+    "unitNumber": 5,
+    "topic": "القيم العظمى والصغرى",
+    "difficulty": "medium",
+    "question": "القيمة الصغرى المحلية للدالة $f(x) = x^{3} - 3x$ تساوي:",
+    "options": [
+      "−2",
+      "2",
+      "0",
+      "−1"
+    ],
+    "answerIndex": 0,
+    "explanation": "$f'(x) = 3x^{2} - 3 = 0$ عند $x = \\pm 1$، و $f''(1) = 6 > 0$ فتوجد قيمة صغرى محلية عند $x = 1$ هي $f(1) = -2$."
+  },
+  {
+    "id": "math-030",
+    "subject": "الرياضيات",
+    "unit": "التفاضل وتطبيقاته",
+    "unitNumber": 5,
+    "topic": "المعدلات الزمنية المرتبطة",
+    "difficulty": "hard",
+    "question": "مكعب يزداد طول حرفه بمعدل 2 cm/s. معدل تغير حجمه عندما يكون طول حرفه 5 cm يساوي:",
+    "options": [
+      "30 cm³/s",
+      "75 cm³/s",
+      "150 cm³/s",
+      "300 cm³/s"
+    ],
+    "answerIndex": 2,
+    "explanation": "$V = x^{3}$ فيكون $\\frac{dV}{dt} = 3x^{2}\\frac{dx}{dt} = 3 \\times 25 \\times 2 = 150$ cm³/s."
+  },
+  {
+    "id": "math-031",
+    "subject": "الرياضيات",
+    "unit": "التكامل وتطبيقاته",
+    "unitNumber": 6,
+    "topic": "التكامل غير المحدد",
+    "difficulty": "easy",
+    "question": "$\\int (3x^{2} + 2x)\\,dx$ يساوي:",
+    "options": [
+      "$6x + 2 + C$",
+      "$x^{3} + x^{2} + C$",
+      "$3x^{3} + 2x^{2} + C$",
+      "$x^{3} + 2x^{2} + C$"
+    ],
+    "answerIndex": 1,
+    "explanation": "$\\int x^{n}\\,dx = \\frac{x^{n+1}}{n+1} + C$ فيكون الناتج $x^{3} + x^{2} + C$."
+  },
+  {
+    "id": "math-032",
+    "subject": "الرياضيات",
+    "unit": "التكامل وتطبيقاته",
+    "unitNumber": 6,
+    "topic": "التكامل المحدد",
+    "difficulty": "easy",
+    "question": "$\\int_{0}^{2} 2x\\,dx$ يساوي:",
+    "options": [
+      "2",
+      "8",
+      "6",
+      "4"
+    ],
+    "answerIndex": 3,
+    "explanation": "$\\left[x^{2}\\right]_{0}^{2} = 4 - 0 = 4$."
+  },
+  {
+    "id": "math-033",
+    "subject": "الرياضيات",
+    "unit": "التكامل وتطبيقاته",
+    "unitNumber": 6,
+    "topic": "تكامل الدوال المثلثية",
+    "difficulty": "medium",
+    "question": "$\\int \\cos 2x\\,dx$ يساوي:",
+    "options": [
+      "$\\frac{1}{2}\\sin 2x + C$",
+      "$2\\sin 2x + C$",
+      "$-\\frac{1}{2}\\sin 2x + C$",
+      "$\\sin 2x + C$"
+    ],
+    "answerIndex": 0,
+    "explanation": "$\\int \\cos ax\\,dx = \\frac{1}{a}\\sin ax + C$."
+  },
+  {
+    "id": "math-034",
+    "subject": "الرياضيات",
+    "unit": "التكامل وتطبيقاته",
+    "unitNumber": 6,
+    "topic": "التكامل بالتجزيء",
+    "difficulty": "medium",
+    "question": "$\\int x\\,e^{x}\\,dx$ يساوي:",
+    "options": [
+      "$x\\,e^{x} + e^{x} + C$",
+      "$\\frac{x^{2}}{2}e^{x} + C$",
+      "$x\\,e^{x} - e^{x} + C$",
+      "$e^{x} + C$"
+    ],
+    "answerIndex": 2,
+    "explanation": "بالتجزيء: $u = x$ و $dv = e^{x}dx$ فيكون الناتج $x\\,e^{x} - \\int e^{x}dx = x\\,e^{x} - e^{x} + C$."
+  },
+  {
+    "id": "math-035",
+    "subject": "الرياضيات",
+    "unit": "التكامل وتطبيقاته",
+    "unitNumber": 6,
+    "topic": "المساحات",
+    "difficulty": "medium",
+    "question": "مساحة المنطقة المحصورة بين المنحنى $y = x^{2}$ ومحور السينات والمستقيمين $x = 0$ و $x = 3$ تساوي:",
+    "options": [
+      "27",
+      "9",
+      "3",
+      "18"
+    ],
+    "answerIndex": 1,
+    "explanation": "$\\int_{0}^{3} x^{2}\\,dx = \\left[\\frac{x^{3}}{3}\\right]_{0}^{3} = 9$ وحدات مربعة."
+  },
+  {
+    "id": "math-036",
+    "subject": "الرياضيات",
+    "unit": "التكامل وتطبيقاته",
+    "unitNumber": 6,
+    "topic": "الحجوم الدورانية",
+    "difficulty": "hard",
+    "question": "حجم الجسم الناشئ من دوران المنطقة المحددة بالمستقيم $y = x$ ومحور السينات والمستقيم $x = 3$ دورة كاملة حول محور السينات يساوي:",
+    "options": [
+      "$3\\pi$",
+      "$\\frac{9\\pi}{2}$",
+      "$27\\pi$",
+      "$9\\pi$"
+    ],
+    "answerIndex": 3,
+    "explanation": "$V = \\pi\\int_{0}^{3} x^{2}\\,dx = \\pi \\times 9 = 9\\pi$ وحدات مكعبة."
+  },
+  {
+    "id": "math-037",
+    "subject": "الرياضيات",
+    "unit": "الاستاتيكا",
+    "unitNumber": 7,
+    "topic": "عزم القوة",
+    "difficulty": "easy",
+    "question": "قوة مقدارها 10 N يبعد خط عملها عن نقطة مسافة عمودية 0.5 m. مقدار عزمها حول هذه النقطة يساوي:",
+    "options": [
+      "5 N.m",
+      "20 N.m",
+      "10.5 N.m",
+      "2.5 N.m"
+    ],
+    "answerIndex": 0,
+    "explanation": "العزم = القوة × البعد العمودي = $10 \\times 0.5 = 5$ N.m."
+  },
+  {
+    "id": "math-038",
+    "subject": "الرياضيات",
+    "unit": "الاستاتيكا",
+    "unitNumber": 7,
+    "topic": "الاحتكاك",
+    "difficulty": "easy",
+    "question": "جسم وزنه 50 N موضوع على مستوى أفقي خشن، وأصبح على وشك الحركة عندما أثرت عليه قوة أفقية مقدارها 20 N. معامل الاحتكاك السكوني يساوي:",
+    "options": [
+      "2.5",
+      "0.4",
+      "0.25",
+      "0.6"
+    ],
+    "answerIndex": 1,
+    "explanation": "رد الفعل العمودي = 50 N، و $\\mu_{s} = \\frac{20}{50} = 0.4$."
+  },
+  {
+    "id": "math-039",
+    "subject": "الرياضيات",
+    "unit": "الاستاتيكا",
+    "unitNumber": 7,
+    "topic": "القوى المتوازية",
+    "difficulty": "medium",
+    "question": "قوتان متوازيتان في اتجاه واحد مقداراهما 6 N و 4 N والمسافة بين خطي عملهما 50 cm. بُعد خط عمل محصلتهما عن القوة 6 N يساوي:",
+    "options": [
+      "30 cm",
+      "25 cm",
+      "20 cm",
+      "10 cm"
+    ],
+    "answerIndex": 2,
+    "explanation": "المحصلة أقرب إلى القوة الأكبر: $6x = 4(50 - x)$ ومنها $x = 20$ cm."
+  },
+  {
+    "id": "math-040",
+    "subject": "الرياضيات",
+    "unit": "الاستاتيكا",
+    "unitNumber": 7,
+    "topic": "الازدواج",
+    "difficulty": "medium",
+    "question": "ازدواج يتكون من قوتين مقدار كل منهما 8 N والبعد العمودي بين خطي عملهما 0.25 m. معيار عزم الازدواج يساوي:",
+    "options": [
+      "32 N.m",
+      "4 N.m",
+      "8.25 N.m",
+      "2 N.m"
+    ],
+    "answerIndex": 3,
+    "explanation": "عزم الازدواج = مقدار إحدى القوتين × ذراع الازدواج = $8 \\times 0.25 = 2$ N.m."
+  },
+  {
+    "id": "math-041",
+    "subject": "الرياضيات",
+    "unit": "الاستاتيكا",
+    "unitNumber": 7,
+    "topic": "الاحتكاك على المستوى المائل",
+    "difficulty": "medium",
+    "question": "وُضع جسم على مستوى مائل خشن فكان على وشك الانزلاق عندما كانت زاوية ميل المستوى على الأفقي 30°. معامل الاحتكاك السكوني يساوي:",
+    "options": [
+      "$\\frac{1}{\\sqrt{3}}$",
+      "$\\sqrt{3}$",
+      "$\\frac{1}{2}$",
+      "$\\frac{\\sqrt{3}}{2}$"
+    ],
+    "answerIndex": 0,
+    "explanation": "عند وشك الانزلاق تكون زاوية الميل مساوية لزاوية الاحتكاك: $\\mu_{s} = \\tan 30° = \\frac{1}{\\sqrt{3}}$."
+  },
+  {
+    "id": "math-042",
+    "subject": "الرياضيات",
+    "unit": "الاستاتيكا",
+    "unitNumber": 7,
+    "topic": "الاتزان العام",
+    "difficulty": "hard",
+    "question": "قضيب منتظم AB طوله 4 m ووزنه 20 N يرتكز أفقيًا على حاملين عند طرفيه A و B، وعُلّق منه ثقل 40 N عند نقطة تبعد 1 m عن A. رد الفعل عند A يساوي:",
+    "options": [
+      "20 N",
+      "30 N",
+      "40 N",
+      "60 N"
+    ],
+    "answerIndex": 2,
+    "explanation": "بأخذ العزوم حول A: $R_{B} \\times 4 = 20 \\times 2 + 40 \\times 1 = 80$ فيكون $R_{B} = 20$ N، ومن اتزان القوى $R_{A} = 60 - 20 = 40$ N."
+  },
+  {
+    "id": "math-043",
+    "subject": "الرياضيات",
+    "unit": "الديناميكا",
+    "unitNumber": 8,
+    "topic": "قانون نيوتن الثاني",
+    "difficulty": "easy",
+    "question": "جسم كتلته 5 kg يتحرك بعجلة 2 m/s². مقدار القوة المحصلة المؤثرة عليه يساوي:",
+    "options": [
+      "2.5 N",
+      "10 N",
+      "7 N",
+      "20 N"
+    ],
+    "answerIndex": 1,
+    "explanation": "$F = ma = 5 \\times 2 = 10$ N."
+  },
+  {
+    "id": "math-044",
+    "subject": "الرياضيات",
+    "unit": "الديناميكا",
+    "unitNumber": 8,
+    "topic": "كمية الحركة",
+    "difficulty": "easy",
+    "question": "كمية حركة جسم كتلته 2 kg يتحرك بسرعة 15 m/s تساوي:",
+    "options": [
+      "30 kg.m/s",
+      "7.5 kg.m/s",
+      "17 kg.m/s",
+      "225 kg.m/s"
+    ],
+    "answerIndex": 0,
+    "explanation": "كمية الحركة = الكتلة × السرعة = $2 \\times 15 = 30$ kg.m/s."
+  },
+  {
+    "id": "math-045",
+    "subject": "الرياضيات",
+    "unit": "الديناميكا",
+    "unitNumber": 8,
+    "topic": "الحركة المستقيمة",
+    "difficulty": "medium",
+    "question": "جسيم يتحرك في خط مستقيم بحيث $x = t^{3} - 6t^{2}$ حيث $x$ بالمتر و $t$ بالثانية. عجلته عند $t = 3$ تساوي:",
+    "options": [
+      "−9 m/s²",
+      "−27 m/s²",
+      "18 m/s²",
+      "6 m/s²"
+    ],
+    "answerIndex": 3,
+    "explanation": "$v = \\frac{dx}{dt} = 3t^{2} - 12t$ و $a = \\frac{dv}{dt} = 6t - 12$، وعند $t = 3$: $a = 6$ m/s²."
+  },
+  {
+    "id": "math-046",
+    "subject": "الرياضيات",
+    "unit": "الديناميكا",
+    "unitNumber": 8,
+    "topic": "الدفع",
+    "difficulty": "medium",
+    "question": "قوة ثابتة مقدارها 50 N أثرت على جسم لمدة 0.2 s. مقدار التغير في كمية حركته يساوي:",
+    "options": [
+      "250 kg.m/s",
+      "10 kg.m/s",
+      "50.2 kg.m/s",
+      "100 kg.m/s"
+    ],
+    "answerIndex": 1,
+    "explanation": "الدفع = القوة × الزمن = $50 \\times 0.2 = 10$ N.s وهو يساوي التغير في كمية الحركة."
+  },
+  {
+    "id": "math-047",
+    "subject": "الرياضيات",
+    "unit": "الديناميكا",
+    "unitNumber": 8,
+    "topic": "التصادم",
+    "difficulty": "medium",
+    "question": "جسم كتلته 2 kg يتحرك بسرعة 6 m/s اصطدم بجسم ساكن كتلته 4 kg والتحما معًا. سرعة الجسمين بعد التصادم مباشرة تساوي:",
+    "options": [
+      "3 m/s",
+      "6 m/s",
+      "2 m/s",
+      "4 m/s"
+    ],
+    "answerIndex": 2,
+    "explanation": "بقاء كمية الحركة: $2 \\times 6 + 0 = (2 + 4)v$ ومنها $v = 2$ m/s."
+  },
+  {
+    "id": "math-048",
+    "subject": "الرياضيات",
+    "unit": "الديناميكا",
+    "unitNumber": 8,
+    "topic": "الشغل والطاقة",
+    "difficulty": "hard",
+    "question": "جسم كتلته 2 kg بدأ الحركة من السكون تحت تأثير قوة محصلة ثابتة مقدارها 10 N. سرعته بعد أن يقطع مسافة 5 m تساوي:",
+    "options": [
+      "$5\\sqrt{2}$ m/s",
+      "5 m/s",
+      "10 m/s",
+      "25 m/s"
+    ],
+    "answerIndex": 0,
+    "explanation": "الشغل = التغير في طاقة الحركة: $10 \\times 5 = \\frac{1}{2} \\times 2 \\times v^{2}$ ومنها $v^{2} = 50$ و $v = 5\\sqrt{2}$ m/s."
+  }
+]
