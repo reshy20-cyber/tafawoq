@@ -2559,7 +2559,7 @@ function knowledge(){
   return kb;
 }
 const STOP=new Set(['ما','ماذا','هو','هي','في','من','على','الى','عن','مع','هل','كيف','لماذا','اشرح','لي','ان','او','ثم','الذي','التي','هذا','هذه','بين','عند','كل','اي','الفرق','احسب','ارجو','ممكن','سؤال','اريد','افهم','لم','لا']);
-function tokens(s){return norm(s).replace(/[^؀-ۿa-z0-9 ]/g,' ').split(/\s+/).filter(w=>w.length>1&&!STOP.has(w)).map(w=>w.replace(/^(وال|بال|فال|كال|لل|ال)/,'')).filter(w=>w.length>1&&!STOP.has(w))}
+function tokens(s){return norm(s).replace(/[؟،؛«»]/g,' ').replace(/[^؀-ۿa-z0-9 ]/g,' ').split(/\s+/).filter(w=>w.length>1&&!STOP.has(w)).map(w=>w.replace(/^(وال|بال|فال|كال|لل|ال)/,'')).filter(w=>w.length>1&&!STOP.has(w))}
 function localTutor(text,ctx){
   if(ctx&&ctx.q){const q=ctx.q;const rel=searchKb(q.q+' '+q.a[0],state.tutorSubject).find(h=>!h.q);return{text:'**الإجابة الصحيحة:** '+q.a[0]+'\n'+q.e+(rel?'\n\n**راجع هذه الفكرة — '+rel.t+':**\n'+rel.b:'')+'\n\nنصيحة: اقرأ السؤال مرة ثانية وحدد الكلمة المفتاحية فيه قبل النظر إلى الاختيارات.'}}
   const p=solvePhysics(text);if(p)return{text:p.text+'\n\nجرّب مسألة مشابهة بتغيير الأرقام وتأكد أنك تصل لنفس الخطوات.'};
@@ -2571,7 +2571,7 @@ function localTutor(text,ctx){
     let extra='';if(qhit)extra=`<details><summary>جرّب سؤالاً مرتبطاً</summary><p>${qh(qhit.q.q)}</p><p class="src">الإجابة: <bdi>${esc(qhit.q.a[0])}</bdi></p></details>`;
     return{text:'**'+top.t+'**\n'+top.b+'\n\nهذه إجابة من ملخصات التطبيق. اسألني بصيغة أخرى أو أعطني مسألة بالأرقام لأحلها خطوة بخطوة.',extra};
   }
-  return{text:'لم أجد إجابة لهذا في ملخصات التطبيق.\n- لحل مسألة: اكتبها بالأرقام والوحدات، مثل «مقاومة 4 أوم وفرق جهد 12 فولت».\n- لمعادلة: اكتب مثل «2x + 3 = 11».\n- لدرس: اذكر اسمه، مثل «قانون أوم» أو «النسخ والترجمة».\nالمدرس الذكي الكامل يعمل عند فتح التطبيق داخل Claude.'};
+  return{text:'لم أجد إجابة لهذا في ملخصات التطبيق.\n- لحل مسألة: اكتبها بالأرقام والوحدات، مثل «مقاومة 4 أوم وفرق جهد 12 فولت».\n- لمعادلة: اكتب مثل «2x + 3 = 11».\n- لدرس: اذكر اسمه، مثل «قانون أوم» أو «النسخ والترجمة».'};
 }
 function searchKb(text,subject){
   const qt=tokens(text);if(!qt.length)return[];
