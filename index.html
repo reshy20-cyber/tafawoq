@@ -2061,8 +2061,8 @@ function renderHome(){
     </div>
     <div class="tools">
       <button type="button" class="tool primary" onclick="go('exams',{setup:{...state.setup,mode:'normal'}})"><span class="glyph">✓</span><b>امتحان تجريبي</b><span>بمؤقت وأسئلة اختيار من متعدد</span></button>
-      <button type="button" class="tool" onclick="go('exams',{setup:{...state.setup,mode:'bubble'}})"><span class="glyph">◉</span><b>البابل شيت</b><span>محاكاة ورقة الإجابة الحقيقية</span></button>
-      <button type="button" class="tool" onclick="go('tutor')"><span class="glyph">؟</span><b>المدرس الذكي</b><span>اشرح لي درساً أو حل مسألة</span></button>
+      <button type="button" class="tool" onclick="if(!plusGate())return;go('exams',{setup:{...state.setup,mode:'bubble'}})"><span class="glyph">◉</span><b>${isPlus()?'':'🔒 '}البابل شيت</b><span>محاكاة ورقة الإجابة الحقيقية</span></button>
+      <button type="button" class="tool" onclick="if(!plusGate())return;go('tutor')"><span class="glyph">؟</span><b>${isPlus()?'':'🔒 '}المدرس الذكي</b><span>اشرح لي درساً أو حل مسألة</span></button>
       <button type="button" class="tool" onclick="go('history')"><span class="glyph">٪</span><b>نتائجي</b><span>الدرجات والأخطاء السابقة</span></button>
       <button type="button" class="tool" onclick="openEssays(null)"><span class="glyph">✎</span><b>أسئلة مقالية</b><span>اكتب إجابتك وقارنها بالنموذجية</span></button>
       <button type="button" class="tool" onclick="go('weak')"><span class="glyph">!</span><b>نقاط ضعفي</b><span>أضعف الوحدات وماذا تذاكر</span></button>
