@@ -256,6 +256,17 @@ body.exam-mode .nav{display:none}
 /* Modal */
 .modal{position:fixed;inset:0;z-index:30;background:rgba(5,20,30,.45);display:grid;place-items:end center;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
 .modal .card{width:100%;max-width:440px}
+.plus-card{display:block;width:100%;text-align:start;border:1.5px solid var(--accent-soft)}
+.plus-cta{background:linear-gradient(135deg,var(--accent-soft),var(--surface));cursor:pointer;color:var(--fg);font:inherit;display:flex;flex-direction:column;gap:4px}
+.plus-k{font-size:12px;letter-spacing:.12em;font-weight:700;color:var(--muted);direction:ltr;text-align:end}
+.plus-lock{text-align:center}
+.plus-sheet{max-height:88vh;overflow:auto}
+.plus-sheet h3{font-size:24px;margin:4px 0}
+.plus-price{margin:8px 0}.plus-price b{font-size:34px}.plus-price span{color:var(--muted)}
+.plus-list,.plus-terms{list-style:none;padding:0;margin:10px 0}
+.plus-list li{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}.plus-list small{display:block;color:var(--muted)}
+.plus-terms li{padding:4px 0;color:var(--good);font-weight:600}
+
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(104px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--fg);color:var(--bg);padding:9px 16px;border-radius:12px;font-size:16px;max-width:calc(100% - 32px)}
 bdi{unicode-bidi:isolate}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
@@ -2061,6 +2072,7 @@ function renderHome(){
       <div class="row"><h3>مذاكرة اليوم • ${DAYS[todayIdx()]}</h3><button type="button" class="link" onclick="go('plan',{planDay:todayIdx()})">الجدول</button></div>
       ${today.length?`<div>${today.map(sessionRow).join('')}</div>`:`<p class="empty">لا توجد جلسات اليوم. أضف جلسات من «جدولي» أو اطلب جدولاً مقترحاً.</p>`}
     </div>
+    ${plusCard()}
     <div class="section-title"><h2>مواد ${esc(BRANCHES[state.branch].name)}</h2><button type="button" class="link" onclick="go('subjects')">الكل</button></div>
     <div class="list">${branchSubjects().map(subjButton).join('')}</div>
     <p class="note">نسخة تعليمية تجريبية ${VERSION}. الأسئلة والملخصات مبنية على كتب الوزارة 2026–2027، ويُنصح بمراجعتها مع مدرس المادة.</p>
@@ -2081,7 +2093,7 @@ function renderSubject(){
   const id=state.subject,s=SUBJECTS[id];
   const progress=load('practice_progress',{});
   let content='';
-  const chCard=CHAPTERS[id]?`<div class="card"><h3>${chPlural(id)} المنهج</h3><div class="list">${CHAPTERS[id].map((c,k)=>{const n=BANK[id].filter(q=>q.ch===k).length;return `<div class="row"><span>${k+1}. ${esc(c)}</span><button type="button" class="pill" onclick="state.setup={...state.setup,subject:'${id}',ch:${k},mode:'normal'};go('exams')">${qCount(n)} ←</button></div>`}).join('')}</div></div>`:'';
+  const chCard=CHAPTERS[id]?`<div class="card"><h3>${chPlural(id)} المنهج</h3><div class="list">${CHAPTERS[id].map((c,k)=>{const n=BANK[id].filter(q=>q.ch===k).length;return `<div class="row"><span>${k+1}. ${esc(c)}</span><button type="button" class="pill" onclick="if(${k}>0&&!plusGate())return;state.setup={...state.setup,subject:'${id}',ch:${k},mode:'normal'};go('exams')">${k>0&&!isPlus()?'🔒 ':''}${qCount(n)} ←</button></div>`}).join('')}</div></div>`:'';
   if(id==='physics'){
     content=chCard+`<h2>الفصل الأول: الدروس</h2>`+
     PHYSICS_LESSONS.map((L,i)=>`<details class="card lesson" id="lesson-${i+1}" ${i===0?'open':''}><summary><span class="num">${i+1}</span><span>${esc(L.t)}</span>${progress[i+1]?'<span class="pill good done">تم</span>':''}</summary><div class="lesson-body">
@@ -2113,15 +2125,15 @@ function quickExam(id,mode){state.setup={...state.setup,subject:id,ch:null,mode}
 /* ---------- exam setup ---------- */
 function renderExamSetup(){
   const S=state.setup;if(!S.subject||!branchSubjects().includes(S.subject))S.subject=branchSubjects().find(x=>x==='physics')||branchSubjects()[2];
-  const chs=CHAPTERS[S.subject];if(!chs)S.ch=null;
+  const chs=CHAPTERS[S.subject];if(!chs)S.ch=null;if(!isPlus()){if(chs)S.ch=0;if(S.mode==='bubble')S.mode='normal'}
   const max=examPool().length,count=Math.min(S.count,max),mins=Math.ceil(count*SEC_PER_Q/60);
   appEl.innerHTML=bar('الامتحانات')+`<div class="screen wrap">
     <div class="card"><span class="label">المادة</span><div class="choices">${branchSubjects().map(id=>`<button type="button" class="choice" aria-pressed="${id===S.subject}" onclick="state.setup.subject='${id}';state.setup.ch=null;render()">${esc(SUBJECTS[id].name)}</button>`).join('')}</div></div>
-    ${chs?`<div class="card"><span class="label">${chWord(S.subject)}</span><div class="choices"><button type="button" class="choice" aria-pressed="${S.ch===null}" onclick="state.setup.ch=null;render()">كل ال${chPlural(S.subject)}</button>${chs.map((c,k)=>`<button type="button" class="choice" aria-pressed="${S.ch===k}" onclick="state.setup.ch=${k};render()">${k+1}. ${esc(c)}</button>`).join('')}</div></div>`:''}
+    ${chs?`<div class="card"><span class="label">${chWord(S.subject)}</span><div class="choices"><button type="button" class="choice" aria-pressed="${S.ch===null}" onclick="if(!plusGate())return;state.setup.ch=null;render()">${isPlus()?'':'🔒 '}كل ال${chPlural(S.subject)}</button>${chs.map((c,k)=>`<button type="button" class="choice" aria-pressed="${S.ch===k}" onclick="if(${k}>0&&!plusGate())return;state.setup.ch=${k};render()">${k>0&&!isPlus()?'🔒 ':''}${k+1}. ${esc(c)}</button>`).join('')}</div></div>`:''}
     <div class="card"><span class="label">عدد الأسئلة</span><div class="choices">${[5,10,20,max].filter((v,i,a)=>v<=max&&a.indexOf(v)===i).map(n=>`<button type="button" class="choice" aria-pressed="${n===count}" onclick="state.setup.count=${n};render()">${n===max?'كل الأسئلة ('+max+')':n+' أسئلة'}</button>`).join('')}</div></div>
     <div class="card"><span class="label">نوع الامتحان</span><div class="modes">
       <button type="button" class="mode" aria-pressed="${S.mode==='normal'}" onclick="state.setup.mode='normal';render()"><b>امتحان عادي</b><span>سؤال في كل شاشة، مع إمكانية الرجوع ووضع علامة للمراجعة.</span></button>
-      <button type="button" class="mode" aria-pressed="${S.mode==='bubble'}" onclick="state.setup.mode='bubble';render()"><b>بابل شيت</b><span>كراسة أسئلة وورقة إجابة منفصلة تظلّل فيها الدوائر.</span></button>
+      <button type="button" class="mode" aria-pressed="${S.mode==='bubble'}" onclick="if(!plusGate())return;state.setup.mode='bubble';render()"><b>${isPlus()?'':'🔒 '}بابل شيت</b><span>كراسة أسئلة وورقة إجابة منفصلة تظلّل فيها الدوائر.</span></button>
     </div>
     ${S.mode==='bubble'?`<div class="toggle"><div><b style="font-size:16px">تظليل نهائي كالامتحان الحقيقي</b><div class="muted">تظليل دائرتين في نفس السؤال يلغي إجابته.</div></div><button type="button" class="switch" role="switch" aria-checked="${S.strict}" aria-label="تظليل نهائي" onclick="state.setup.strict=!state.setup.strict;render()"></button></div>`:''}
     </div>
@@ -2133,10 +2145,11 @@ function renderExamSetup(){
 
 /* ---------- exam engine ---------- */
 function makeItems(list){return list.map(q=>{const perm=shuffle([...q.a.keys()]);return{q:q.q,opts:perm.map(i=>q.a[i]),c:perm.indexOf(0),e:q.e,ch:q.ch,src:q}})}
-function examPool(){const S=state.setup;return BANK[S.subject].filter(q=>S.ch===null||S.ch===undefined||q.ch===S.ch)}
+function examPool(){const S=state.setup;return BANK[S.subject].filter(q=>(S.ch===null||S.ch===undefined||q.ch===S.ch)&&plusOk(q))}
 const chWord=subject=>CHAPTER_WORD[subject]||'الفصل';
 function chName(subject,ch){return CHAPTERS[subject]&&ch!=null?`${chWord(subject)} ${ch+1}: ${CHAPTERS[subject][ch]}`:''}
 function startExam(pool){
+  if(!isPlus()){if(state.setup.mode==='bubble')state.setup.mode='normal';if(pool){const was=pool.length;pool=pool.filter(plusOk);if(was&&!pool.length){paywall();return}}}
   const S=state.setup,all=examPool();
   const qs=pool||shuffle(all).slice(0,Math.min(S.count,all.length));
   const n=qs.length,seconds=n*SEC_PER_Q;
@@ -2278,7 +2291,7 @@ function weakRows(){
   branchSubjects().forEach(s=>{if(!CHAPTERS[s])return;Object.entries(cs[s]||{}).forEach(([ch,e])=>{ch=+ch;if(e.n>=3&&CHAPTERS[s][ch]!==undefined)out.push({s,ch,n:e.n,acc:Math.round(e.c/e.n*100)})})});
   return out.sort((a,b)=>a.acc-b.acc||b.n-a.n);
 }
-function practiceChapter(s,ch){state.setup={...state.setup,subject:s,ch,mode:'normal',count:10};go('exams')}
+function practiceChapter(s,ch){if(ch>0&&!plusGate())return;state.setup={...state.setup,subject:s,ch,mode:'normal',count:10};go('exams')}
 function reviewBank(s,ch){
   const items=dueItems(s).filter(x=>ch==null||x.q.ch===ch);if(!items.length){toast('لا توجد أسئلة مستحقة للمراجعة الآن');return}
   state.setup={...state.setup,subject:s,mode:'normal'};startExam(shuffle(items).slice(0,20).map(x=>x.q));
@@ -2321,12 +2334,12 @@ function renderMistakes(){
 const figHtml=q=>q&&q.fig&&FIGS[q.fig]?`<div class="qfig">${FIGS[q.fig]}</div>`:'';
 function lessonsHtml(id){
   const ls=LESSONS[id];if(!ls||!CHAPTERS[id])return '';
-  const items=ls.map((b,k)=>b?`<details class="card lesson-u"><summary class="row"><b>${chWord(id)} ${k+1}: ${esc(CHAPTERS[id][k])}</b><span class="pill">اشرح</span></summary><div class="lesson-body"${id==='english'?' dir="ltr"':''}>${rich(b)}</div><div class="btns"><button type="button" class="btn soft" onclick="practiceChapter('${id}',${k})">امتحن في هذه ${id==='chemistry'?'الباب':id==='biology'||id==='history'||id==='physics'?'الفصل':'الوحدة'}</button>${ESSAYS[id]&&ESSAYS[id].some(e=>e.ch===k)?`<button type="button" class="btn ghost" onclick="openEssays('${id}',${k})">أسئلة مقالية</button>`:''}</div></details>`:'').join('');
+  const items=ls.map((b,k)=>b?`<details class="card lesson-u"><summary class="row"><b>${k>0&&!isPlus()?'🔒 ':''}${chWord(id)} ${k+1}: ${esc(CHAPTERS[id][k])}</b><span class="pill">اشرح</span></summary><div class="lesson-body"${id==='english'?' dir="ltr"':''}>${k>0&&!isPlus()?`<div class="plus-lock"><p class="muted">شرح هذه ال${chWord(id).replace(/^ال/,'')} ضمن تفوق بلس. الوحدة الأولى مجانية.</p><button type="button" class="btn" onclick="paywall()">👑 تفوق بلس</button></div>`:rich(b)}</div><div class="btns"><button type="button" class="btn soft" onclick="practiceChapter('${id}',${k})">امتحن في هذه ${id==='chemistry'?'الباب':id==='biology'||id==='history'||id==='physics'?'الفصل':'الوحدة'}</button>${ESSAYS[id]&&ESSAYS[id].some(e=>e.ch===k)?`<button type="button" class="btn ghost" onclick="openEssays('${id}',${k})">أسئلة مقالية</button>`:''}</div></details>`:'').join('');
   return items?`<h2>شرح ال${chPlural(id)}</h2>${items}`:'';
 }
 let essay={subject:null,ch:null,idx:0,shown:false};
 function essayList(){const s=essay.subject;return (ESSAYS[s]||[]).filter(e=>essay.ch==null||e.ch===essay.ch)}
-function openEssays(s,ch){essay={subject:s,ch:ch??null,idx:0,shown:false};go('essay')}
+function openEssays(s,ch){if(!isPlus()&&ch!==0){if(ch==null)ch=0;else{paywall();return}}essay={subject:s,ch:ch??null,idx:0,shown:false};go('essay')}
 function essayKey(s,e){return qKey(s,{q:e.q})}
 function setEssayMark(m){const list=essayList(),e=list[essay.idx];const k=essayKey(essay.subject,e);const all=load('essayMarks',{});all[k]=m;save('essayMarks',all);if(essay.idx<list.length-1){essay.idx++;essay.shown=false}render();window.scrollTo(0,0)}
 function saveEssayDraft(v){const list=essayList(),e=list[essay.idx];const d=load('essayDrafts',{});d[essayKey(essay.subject,e)]=v;save('essayDrafts',d)}
@@ -2414,6 +2427,7 @@ if(window.claude&&typeof window.claude.use==='function'){window.claude.use('samp
 const aiOn=()=>!!sampleFn&&!aiBlocked;
 function saveChat(){save('chat',chat.slice(-40))}
 function renderTutor(){
+  if(!isPlus()){lockedTutor();return}
   const subs=['general',...branchSubjects()],cur=state.tutorSubject;
   const sugg=tutorSuggestions(cur);
   appEl.innerHTML=bar('المدرس الذكي')+`<div class="screen wrap tutor">
@@ -2435,8 +2449,9 @@ function tutorSuggestions(s){return({
   arabic:['اشرح عمل كان وإنّ','ما مدارس الشعر الحديث؟'],english:['اشرح الشرط الثاني','متى أستخدم since و for؟'],
   history:['رتب أحداث القرن التاسع عشر','ما نتائج ثورة 1919؟'],geography:['ما أنواع الحدود السياسية؟','ما الدولة الحبيسة؟'],statistics:['احسب الوسيط للقيم 4، 9، 2، 7، 5','اشرح معامل الارتباط']
 })[s]||[]}
-function askTutorAbout(subject,text,ctx){state.tutorSubject=branchSubjects().includes(subject)?subject:'general';go('tutor');setTimeout(()=>sendTutor(text,ctx),50)}
+function askTutorAbout(subject,text,ctx){if(!plusGate())return;state.tutorSubject=branchSubjects().includes(subject)?subject:'general';go('tutor');setTimeout(()=>sendTutor(text,ctx),50)}
 async function sendTutor(text,ctx){
+  if(!isPlus()){paywall();return}
   if(busy)return;const box=document.getElementById('tutor-input');
   text=(text??box?.value??'').trim();if(!text)return;
   chat.push({role:'user',content:text});saveChat();
@@ -2563,7 +2578,97 @@ function searchKb(text,subject){
   return knowledge().map(d=>{const dt=norm(d.t+' '+d.b);let sc=0;qt.forEach(w=>{if(dt.includes(w))sc+=w.length>3?2:1});if(norm(d.t).includes(qt.join(' ')))sc+=3;if(subject!=='general'&&d.s===subject)sc*=1.5;if(subject!=='general'&&d.s!==subject)sc*=.6;return{...d,sc}}).filter(d=>d.sc>=2).sort((a,b)=>b.sc-a.sc).slice(0,4);
 }
 
+  /* ---------- Tafawoq Plus 2026–2027 (Google Play Billing via the Digital Goods API) ----------
+     Free: the first unit of every subject (lessons, questions, normal exams).
+     Plus (one-time purchase "tafawoq_plus_2026_2027", no auto-renewal, valid until 31 August 2027):
+     every unit, bubble-sheet exams and the smart tutor.
+     Locks only apply where Plus can be bought: Android (the Google Play app). iPhone and computers get
+     everything until a payment exists there. Add ?preview=free to the address to see the free version anywhere.
+     Every purchase is checked and acknowledged by the shared Supabase function "verify-purchase". */
+  const PLUS_SKU='tafawoq_plus_2026_2027',PLUS_YEAR='2026–2027',PLUS_END=Date.parse('2027-09-01T00:00:00+03:00'),PLAY_ID='app.tafawoq';
+  const VERIFY_URL='https://nwlmoecyepsajayyyugd.supabase.co/functions/v1/verify-purchase',VERIFY_KEY='sb_publishable_rgaE-hjmqV37RU57_C8JEA_yn-0AcEO';
+  let PREVIEW_FREE=/[?&#]preview=free/.test(location.search+location.hash);
+  try{if(PREVIEW_FREE)sessionStorage.setItem('tafawoq_preview','1');else if(/[?&#]preview=off/.test(location.search+location.hash))sessionStorage.removeItem('tafawoq_preview');PREVIEW_FREE=PREVIEW_FREE||sessionStorage.getItem('tafawoq_preview')==='1'}catch(e){}
+  const LOCKS_ON=PREVIEW_FREE||/Android/i.test(navigator.userAgent)||('getDigitalGoodsService' in window);
+  const billing={service:null,price:'',busy:false};
+  const plusOwned=()=>{const p=load('plus',null);return !!(p&&p.active&&p.sku===PLUS_SKU)};
+  const plusExpired=()=>Date.now()>=PLUS_END;
+  function isPlus(){if(PREVIEW_FREE)return false;return !LOCKS_ON||(plusOwned()&&!plusExpired())}
+  const plusOk=q=>isPlus()||q.ch===0;
+  function plusGate(){if(isPlus())return true;paywall();return false}
+  function setPlus(active){
+    if(PREVIEW_FREE)return;const was=isPlus();
+    save('plus',{active:!!active,sku:PLUS_SKU,checked:Date.now()});
+    if(was!==isPlus())render();
+  }
+  function plusCard(){
+    if(!LOCKS_ON)return '';
+    if(isPlus())return `<div class="card plus-card"><div class="row"><b>👑 تفوق بلس ${PLUS_YEAR}</b><span class="pill good">مفعّل</span></div><div class="muted">صالح حتى 31 أغسطس 2027</div></div>`;
+    return `<button type="button" class="card plus-card plus-cta" onclick="paywall()"><span class="plus-k">TAFAWOQ PLUS</span><b>👑 افتح كل الوحدات مع تفوق بلس ${PLUS_YEAR}</b><span class="muted">المجاني: الوحدة الأولى من كل مادة. بلس: كل الوحدات، البابل شيت، والمدرس الذكي.</span></button>`;
+  }
+  function lockedTutor(){
+    appEl.innerHTML=bar('المدرس الذكي')+`<div class="screen wrap"><div class="card plus-lock"><div style="font-size:34px">🔒</div><h3>المدرس الذكي ضمن تفوق بلس</h3><p class="muted">اسأل عن أي درس، أو اكتب مسألة بالأرقام وسيحلها معك خطوة بخطوة.</p><button type="button" class="btn block" onclick="paywall()">👑 اعرف المزيد عن تفوق بلس</button></div></div>`;
+  }
+  function paywall(){
+    const root=document.getElementById('modal-root');
+    const feats=[['📚','كل وحدات كل المواد','بنوك الأسئلة كاملة لكل الوحدات'],['📝','محاكاة البابل شيت','كراسة أسئلة وورقة إجابة كالامتحان الحقيقي'],['🤖','المدرس الذكي','شرح الدروس وحل المسائل خطوة بخطوة']];
+    const terms=['دفعة واحدة، بدون تجديد تلقائي','الوصول حتى 31 أغسطس 2027','استعادة الشراء على الأجهزة المرتبطة بالحساب','تحديثات المحتوى خلال فترة الصلاحية'];
+    let h=`<div class="modal" role="dialog" aria-modal="true" aria-labelledby="p-title"><div class="card plus-sheet">
+      <div class="plus-k">TAFAWOQ PLUS</div><h3 id="p-title">🎓 تفوق بلس ${PLUS_YEAR}</h3>`;
+    if(isPlus()) h+=`<p><span class="pill good">✓ مفعّل</span> صالح حتى 31 أغسطس 2027</p>`;
+    else{
+      h+=`<div class="plus-price"><b id="plus-price">${esc(billing.price||'299')}</b> <span>${billing.price?'':'جنيه مصري '}/ العام الدراسي</span></div>`;
+      if(plusOwned()&&plusExpired())h+=`<p class="note">انتهت صلاحية تفوق بلس 2026–2027.</p>`;
+    }
+    h+=`<ul class="plus-list">${feats.map(f=>`<li><span>${f[0]}</span><div><b>${f[1]}</b><small>${f[2]}</small></div></li>`).join('')}</ul>
+      <ul class="plus-terms">${terms.map(t=>`<li>✓ ${t}</li>`).join('')}</ul>`;
+    if(isPlus()) h+=`<button type="button" class="btn block" id="p-close">تم</button>`;
+    else if(billing.service) h+=`<div class="btns" style="flex-direction:column"><button type="button" class="btn block" id="p-buy">اشترك في تفوق بلس</button><button type="button" class="btn ghost block" id="p-restore">استعادة الشراء</button><button type="button" class="btn ghost block" id="p-close">ليس الآن</button></div>`;
+    else h+=`<p class="muted">📱 الشراء متاح من تطبيق «تفوق» على Google Play.</p><div class="btns" style="flex-direction:column"><a class="btn block" style="text-decoration:none" href="https://play.google.com/store/apps/details?id=${PLAY_ID}" target="_blank" rel="noopener">Google Play</a><button type="button" class="btn ghost block" id="p-close">ليس الآن</button></div>`;
+    root.innerHTML=h+`</div></div>`;
+    const close=()=>root.innerHTML='';
+    root.querySelector('#p-close').onclick=close;
+    root.querySelector('.modal').onclick=e=>{if(e.target.classList.contains('modal'))close()};
+    const b=root.querySelector('#p-buy');if(b)b.onclick=buyPlus;
+    const r=root.querySelector('#p-restore');if(r)r.onclick=()=>restorePlus(true);
+  }
+  function verifyPurchase(token){
+    return fetch(VERIFY_URL,{method:'POST',headers:{'Content-Type':'application/json',apikey:VERIFY_KEY,Authorization:'Bearer '+VERIFY_KEY},body:JSON.stringify({purchaseToken:token,sku:PLUS_SKU})})
+      .then(r=>r.json().then(d=>{if(!r.ok&&r.status>=500)throw new Error('server');return !!(d&&d.valid)}));
+  }
+  function initBilling(){
+    if(!('getDigitalGoodsService' in window))return;
+    window.getDigitalGoodsService('https://play.google.com/billing').then(service=>{
+      billing.service=service;
+      service.getDetails([PLUS_SKU]).then(items=>{const it=items&&items[0];
+        if(it&&it.price){try{billing.price=new Intl.NumberFormat('ar-EG',{style:'currency',currency:it.price.currency}).format(it.price.value)}catch(e){billing.price=it.price.value+' '+it.price.currency}}
+        const p=document.getElementById('plus-price');if(p)p.textContent=billing.price;}).catch(()=>{});
+      restorePlus(false);
+    }).catch(()=>{billing.service=null});
+  }
+  function restorePlus(manual){
+    if(!billing.service){if(manual)toast('الشراء متاح من تطبيق «تفوق» على Google Play');return}
+    billing.service.listPurchases().then(list=>{
+      const p=(list||[]).find(x=>x.itemId===PLUS_SKU);
+      if(!p){setPlus(false);if(manual)toast('لا يوجد شراء سابق على هذا الحساب');return}
+      return verifyPurchase(p.purchaseToken).then(ok=>{setPlus(ok);if(manual){toast(ok?'تم تفعيل تفوق بلس':'تعذّر التحقق من الشراء');if(ok)document.getElementById('modal-root').innerHTML=''}})
+        .catch(()=>setPlus(true)); // server not reachable: trust Google Play's list, check again next launch
+    }).catch(()=>{if(manual)toast('تعذّر التحقق من الشراء')});
+  }
+  function buyPlus(){
+    if(!billing.service||billing.busy)return;
+    if(!window.PaymentRequest){toast('لم يكتمل الشراء. حاول مرة أخرى');return}
+    billing.busy=true;let req;
+    try{req=new PaymentRequest([{supportedMethods:'https://play.google.com/billing',data:{sku:PLUS_SKU}}],{total:{label:'Total',amount:{currency:'EGP',value:'0'}}})}
+    catch(e){billing.busy=false;toast('لم يكتمل الشراء. حاول مرة أخرى');return}
+    req.show().then(res=>{const token=res.details&&res.details.purchaseToken;
+      return verifyPurchase(token).then(ok=>res.complete(ok?'success':'fail').then(()=>{billing.busy=false;if(ok){document.getElementById('modal-root').innerHTML='';setPlus(true);toast('شكراً! تم تفعيل تفوق بلس')}else toast('لم يكتمل الشراء. حاول مرة أخرى')}))
+        .catch(()=>res.complete('fail').then(()=>{billing.busy=false;toast('لم يكتمل الشراء. حاول مرة أخرى')}));
+    }).catch(()=>{billing.busy=false}); // cancelled
+  }
+
 render();
+initBilling();
 </script>
 <script>if('serviceWorker' in navigator&&location.protocol==='https:'){addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}</script>
 </body>
