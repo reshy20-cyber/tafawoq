@@ -2593,7 +2593,17 @@ function searchKb(text,subject){
   const billing={service:null,price:'',busy:false};
   const plusOwned=()=>{const p=load('plus',null);return !!(p&&p.active&&p.sku===PLUS_SKU)};
   const plusExpired=()=>Date.now()>=PLUS_END;
-  function isPlus(){if(PREVIEW_FREE)return false;return !LOCKS_ON||(plusOwned()&&!plusExpired())}
+  /* Google Play review: a code given to reviewers in Play Console (App access) turns Plus on, on this device only. Only its SHA-256 is kept here. */
+  const REVIEW_HASH='2775b58e2fc81f3abd2bffee8540ad1dafa92d6a01d8c02c68017b9d4b6bc1d1';
+  function isPlus(){if(PREVIEW_FREE)return false;return !LOCKS_ON||load('review',false)===true||(plusOwned()&&!plusExpired())}
+  function redeemCode(){
+    const c=(window.prompt('اكتب الرمز')||'').trim().toUpperCase();if(!c)return;
+    if(!(window.crypto&&crypto.subtle)){toast('هذا الرمز غير صحيح');return}
+    crypto.subtle.digest("SHA-256",new TextEncoder().encode(c)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("")}).then(h=>{
+      if(h!==REVIEW_HASH){toast('هذا الرمز غير صحيح');return}
+      save('review',true);document.getElementById('modal-root').innerHTML='';render();toast('تم تفعيل تفوق بلس');
+    });
+  }
   const plusOk=q=>isPlus()||q.ch===0;
   function plusGate(){if(isPlus())return true;paywall();return false}
   function setPlus(active){
@@ -2625,12 +2635,14 @@ function searchKb(text,subject){
     if(isPlus()) h+=`<button type="button" class="btn block" id="p-close">تم</button>`;
     else if(billing.service) h+=`<div class="btns" style="flex-direction:column"><button type="button" class="btn block" id="p-buy">اشترك في تفوق بلس</button><button type="button" class="btn ghost block" id="p-restore">استعادة الشراء</button><button type="button" class="btn ghost block" id="p-close">ليس الآن</button></div>`;
     else h+=`<p class="muted">📱 الشراء متاح من تطبيق «تفوق» على Google Play.</p><div class="btns" style="flex-direction:column"><a class="btn block" style="text-decoration:none" href="https://play.google.com/store/apps/details?id=${PLAY_ID}" target="_blank" rel="noopener">Google Play</a><button type="button" class="btn ghost block" id="p-close">ليس الآن</button></div>`;
+    if(!isPlus())h+=`<button type="button" class="btn ghost block" id="p-code" style="margin-top:8px">لدي رمز</button>`;
     root.innerHTML=h+`</div></div>`;
     const close=()=>root.innerHTML='';
     root.querySelector('#p-close').onclick=close;
     root.querySelector('.modal').onclick=e=>{if(e.target.classList.contains('modal'))close()};
     const b=root.querySelector('#p-buy');if(b)b.onclick=buyPlus;
     const r=root.querySelector('#p-restore');if(r)r.onclick=()=>restorePlus(true);
+    const rc=root.querySelector('#p-code');if(rc)rc.onclick=redeemCode;
   }
   function verifyPurchase(token){
     return fetch(VERIFY_URL,{method:'POST',headers:{'Content-Type':'application/json',apikey:VERIFY_KEY,Authorization:'Bearer '+VERIFY_KEY},body:JSON.stringify({purchaseToken:token,sku:PLUS_SKU})})
